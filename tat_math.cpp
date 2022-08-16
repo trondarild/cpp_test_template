@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath> 
 #include "tat_math.h"
+#include "tat_utils.h"
+
 using namespace std;
 
 float* reset_array(float *r, int size) {
@@ -57,4 +59,49 @@ soft_max_pw(float *r, float *a, float pw, int size)
     else
         reset_array(r, size);
     return r;
+}
+
+float **
+sequentials(float **retval, float start, int x, int y)
+{
+    float ctr = start;
+    for(int j=0; j<y; j++)
+    {
+    	for(int i=0; i<x; i++)
+        {
+            retval[j][i] = ctr;
+            ctr += 1.f;
+        }
+    }
+    return retval;
+}
+
+float **
+transpose(float ** a_T, float ** a, int sizex, int sizey)
+{
+    for(int i=0; i<sizex; i++)
+        for(int j=0; j<sizey; j++)
+            a_T[j][i] = a[i][j];
+    return a_T;
+}
+
+void 
+hstack(float **retval, 
+            float **a, 
+            int ax, 
+            float **b, 
+            int bx, 
+            int rety)
+{
+    /**
+     * @brief Horizontally stack matrices
+     * 
+     */
+    for (int j = 0, rj=0, aj=0, bj=0; 
+        j < rety; 
+        j++, rj += ax + bx, aj += ax, bj += bx)
+    {
+      copy_array(retval[0]+rj, a[0]+aj, ax);
+      copy_array(retval[0]+rj+ax, b[0]+bj, bx);   
+    }
 }

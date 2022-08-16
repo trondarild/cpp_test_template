@@ -1,8 +1,9 @@
-release:	main.cpp tat_math.cpp
-	g++ -o test main.cpp tat_math.cpp
+SOURCES=main.cpp tat_math.cpp tat_utils.cpp
+release:	
+	g++ -o test $(SOURCES)
 
-debug:	main.cpp tat_math.cpp
-	g++ -g -o test_d main.cpp tat_math.cpp
+debug:	
+	g++ -g -o test_d $(SOURCES)
 
 clean:
 	-rm test test_d
