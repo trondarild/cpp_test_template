@@ -201,7 +201,7 @@ dot(float **retval, float **a, float **b, int ax, int ay, int by )
     /**
      * @brief classic matrix product, 
      * assumes b is transposed correctly
-     * (simple but slow impl)
+     * (simple to understand but slow impl)
      */
     for (int j = 0; j < ay; j++)
     {
