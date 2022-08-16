@@ -194,3 +194,34 @@ dot(float *a, float *b, int size)
     destroy_array(tmp);
     return retval;   
 }
+
+float **
+dot(float **retval, float **a, float **b, int ax, int ay, int by )
+{
+    /**
+     * @brief classic matrix product, 
+     * assumes b is transposed correctly
+     * (simple but slow impl)
+     */
+    for (int j = 0; j < ay; j++)
+    {
+        for (int i = 0; i < by; i++)
+        {
+            retval[j][i] = dot(a[j], b[i], ax);
+        }
+        
+    }
+    return retval;
+    
+}
+
+float **id(int size)
+{
+    float ** retval = zeros(size, size);
+    for (int i = 0; i < size; i++)
+    {
+        retval[i][i] = 1.f;
+    }
+    return retval;
+    
+}
