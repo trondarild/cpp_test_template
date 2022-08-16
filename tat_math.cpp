@@ -170,11 +170,7 @@ add(float **retval, float **a, float **b, int sizex, int sizey)
 float*
 reset(float *a, int size)
 {
-    for (int i = 0; i < size; i++)
-    {
-        a[i] = 0;
-    }
-    return a;
+    return reset_array(a, size);
     
 }
 
