@@ -120,3 +120,77 @@ vstack(float **retval, float **a, int ay, float **b, int by, int rx)
         copy_array(retval[j+ay], b[j], rx);
     return retval;
 }
+
+
+// float**
+// hrepeat(float **retval, **a, int times, int rx, int sizey)
+// {
+//     /**
+//      * @brief TODO Repeats valuex n times in horizontal dir
+//      * 
+//      */
+//     return null;
+// }
+float *
+multiply(float *retval, float *a, float *b, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        retval[i] = a[i] * b[i];
+    }
+    return retval;
+    
+}
+
+float**
+multiply(float **retval, float **a, float **b, int sizex, int sizey)
+{
+    multiply(retval[0], a[0], b[0], sizex*sizey);
+    return retval;
+}
+
+float *
+add(float *retval, float *a, float *b, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        retval[i] = a[i] + b[i];
+    }
+    return retval;
+    
+}
+
+float**
+add(float **retval, float **a, float **b, int sizex, int sizey)
+{
+    add(retval[0], a[0], b[0], sizex*sizey);
+    return retval;
+}
+
+float*
+reset(float *a, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        a[i] = 0;
+    }
+    return a;
+    
+}
+
+float**
+reset(float **a, int sizex, int sizey)
+{
+    reset(a[0], sizex*sizey);
+    return a;
+}
+
+float 
+dot(float *a, float *b, int size)
+{
+    float *tmp = zeros(size);
+    multiply(tmp, a, b, size);
+    float retval = sum(tmp, size);
+    destroy_array(tmp);
+    return retval;   
+}
