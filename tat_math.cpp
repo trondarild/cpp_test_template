@@ -85,7 +85,7 @@ transpose(float ** a_T, float ** a, int sizex, int sizey)
     return a_T;
 }
 
-void 
+float** 
 hstack(float **retval, 
             float **a, 
             int ax, 
@@ -104,4 +104,19 @@ hstack(float **retval,
       copy_array(retval[0]+rj, a[0]+aj, ax);
       copy_array(retval[0]+rj+ax, b[0]+bj, bx);   
     }
+    return retval;
+}
+
+float**
+vstack(float **retval, float **a, int ay, float **b, int by, int rx)
+{
+    /**
+     * @brief Vertically stack matrices
+     * 
+     */
+    for (int j = 0; j < ay; j++)
+        copy_array(retval[j], a[j], rx);
+    for (int j = 0; j < by; j++)
+        copy_array(retval[j+ay], b[j], rx);
+    return retval;
 }
