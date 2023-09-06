@@ -18,3 +18,4 @@ float **reset(float **a, int sizex, int sizey);
 float dot(float *a, float *b, int size);
 float **dot(float **retval, float **a, float **b, int ax, int ay, int by);
 float **id(int size);
+float boxMullerGaussian(float mean, float sigma);

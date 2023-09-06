@@ -2,6 +2,7 @@
 #include <cmath> 
 #include "tat_math.h"
 #include "tat_utils.h"
+#include <random>
 
 using namespace std;
 
@@ -211,7 +212,8 @@ dot(float **retval, float **a, float **b, int ax, int ay, int by )
     
 }
 
-float **id(int size)
+float **
+id(int size)
 {
     float ** retval = zeros(size, size);
     for (int i = 0; i < size; i++)
@@ -220,4 +222,30 @@ float **id(int size)
     }
     return retval;
     
+}
+
+
+float 
+boxMullerGaussian(float mean, float sigma)
+{
+    /**
+     * Sample single value from a Gaussian with mean and sigma std dev
+    */
+    // Generate two uniform random numbers
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    float u1 = dis(gen);
+    float u2 = dis(gen);
+
+    // Use Box-Muller transform
+    float z0 = std::sqrt(-2.0 * std::log(u1)) * std::cos(2 * M_PI * u2);
+    //float z1 = std::sqrt(-2.0 * std::log(u1)) * std::sin(2 * M_PI * u2);
+
+    // Scale and translate to desired mean and standard deviation
+    z0 = z0 * sigma + mean;
+    //z1 = z1 * sigma + mean;
+
+    //return std::make_pair(z0, z1);
+    return z0;
 }
